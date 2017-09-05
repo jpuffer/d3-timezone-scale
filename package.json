@@ -1,0 +1,39 @@
+{
+  "name": "d3-timezone-scale",
+  "version": "0.0.1",
+  "description": "d3 scale component using a specified timezone name",
+  "keywords": [
+    "d3",
+    "d3-module"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "build/timezone-scale.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/jpuffer/d3-timezone-scale",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jpuffer/d3-timezone-scale.git"
+  },
+  "scripts": {
+    "pretest": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/timezone-scale.js -- index.js",
+    "test": "tape 'test/**/*-test.js'",
+    "prepublish": "npm run test && uglifyjs build/timezone-scale.js -c -m -o build/timezone-scale.min.js",
+    "postpublish": "zip -j build/timezone-scale.zip -- LICENSE README.md build/timezone-scale.js build/timezone-scale.min.js"
+  },
+  "dependencies": {
+    "chronological": "1.3.1",
+    "moment": "2.18.1",
+    "moment-timezone": "0.5.13",
+    "d3-scale": "^1.0.6"
+  },
+  "devDependencies": {
+    "d3-time": "^1.0.7",
+    "d3-selection": "^1.1.0",
+    "d3-axis":"^1.0.8",
+    "rollup": "0.27",
+    "tape": "4",
+    "uglify-js": "2",
+    "browserify": "14.4.0",
+    "watchify": "~3.9.0"
+  }
+}

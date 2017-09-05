@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+      .axis text {
+        font: 10px sans-serif;
+      }
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+      body > div{
+        margin: 15px 0;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+      }
+      h4{
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="e1"><h4>Native D3 local time scale</h4></div>
+    <div id="e2"><h4>Native D3 UTC scale</h4></div>
+    <div id="e3"><h4>Timezone-aware scale (UTC)</h4></div>
+    <div id="e4"><h4>Timezone-aware scale (US/Eastern)</h4></div>
+  </body>
+
+  <script src="bundle.js"></script>
+
+</html>
