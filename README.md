@@ -26,3 +26,14 @@ myScale = d3.scaleTimezone('US/Eastern')
 - [moment-timezone](https://github.com/moment/moment-timezone)
 - [chronological](https://github.com/metocean/chronological)
 - [d3-scale](https://github.com/d3/d3-scale)
+
+## Contributing
+
+First things first: 
+
+```npm install```
+
+Running the example locally:
+1) ``npm install -g watchify``
+2) ``watchify examples/index.js -o examples/bundle.js``
+3) open `examples/index.html` in a browser
