@@ -56,6 +56,16 @@ export default function(tz) {
     }
     return Math.pow(10, Math.round(Math.log(num) / Math.LN10));
   };
+
+  function getClosest(array, target) {
+    var tuples = array.map(function(val) {
+      return [val, Math.abs(val - target)];
+    });
+    return tuples.reduce(function(memo, val) {
+      return (memo[1] < val[1]) ? memo : val;
+    }, [-1, 999])[0];
+  }
+
   niceunitnumbers = {
     s: [1, 5, 15, 30, 60],
     m: [1, 5, 15, 30, 60],
@@ -71,13 +81,7 @@ export default function(tz) {
       return powround(n);
     }
     numbers = niceunitnumbers[unit];
-    for (i = 0, len = numbers.length; i < len; i++) {
-      num = numbers[i];
-      if (n < num + num * 2) {
-        return num;
-      }
-    }
-    return numbers[numbers.length - 1];
+    return getClosest(numbers, n);
   };
   formats = {
     ms: function(d) {
