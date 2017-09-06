@@ -27,9 +27,7 @@
     "d3-scale": "^1.0.6"
   },
   "devDependencies": {
-    "d3-time": "^1.0.7",
-    "d3-selection": "^1.1.0",
-    "d3-axis":"^1.0.8",
+    "d3": "4.10.2",
     "rollup": "0.27",
     "tape": "4",
     "uglify-js": "2",

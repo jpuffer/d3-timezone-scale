@@ -2,7 +2,7 @@
 // [d3-chronological](https://github.com/metocean/d3-chronological)
 // but updated for use with D3 V4
 
-import {scaleLinear} from "d3-scale";
+import {scaleLinear} from "d3";
 
 export default function(tz) {
 
