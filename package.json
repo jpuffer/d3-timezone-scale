@@ -15,7 +15,7 @@
     "url": "https://github.com/jpuffer/d3-timezone-scale.git"
   },
   "scripts": {
-    "pretest": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/timezone-scale.js -- index.js",
+    "pretest": "rm -rf build && mkdir build && rollup -c -n d3 -- index.js",
     "test": "tape 'test/**/*-test.js'",
     "prepublish": "npm run test && uglifyjs build/timezone-scale.js -c -m -o build/timezone-scale.min.js",
     "postpublish": "zip -j build/timezone-scale.zip -- LICENSE README.md build/timezone-scale.js build/timezone-scale.min.js"
@@ -27,11 +27,12 @@
     "d3-scale": "^1.0.6"
   },
   "devDependencies": {
+    "browserify": "14.4.0",
     "d3": "4.10.2",
     "rollup": "0.27",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "tape": "4",
     "uglify-js": "2",
-    "browserify": "14.4.0",
     "watchify": "~3.9.0"
   }
 }
