@@ -20,18 +20,18 @@ margin = {
   bottom: 20,
   left: 30
 };
-width = 960 - margin.left - margin.right;
+width = 1160 - margin.left - margin.right;
 height = 50 - margin.top - margin.bottom;
 //note: DST boundary is at 2:00AM on 3/12.
-domain = [moment.utc('2017-03-10T00:00:00Z'), moment.utc('2017-03-14T00:00:00Z')];
+domain = [moment.utc('2017-03-10T08:00:00Z'), moment.utc('2017-03-14T05:00:00Z')];
 
 var timeFormatter = function(d) {
   var time;
   time = moment(d);
   if (time.hour() > 0) {
-    return time.format('h:mma MM/D Z');
+    return time.format('h:mma MMM D');
   } else {
-    return time.format('MMM D Z');
+    return time.format('MMM D');
   }
 };
 
@@ -47,7 +47,7 @@ function addExampleAxis(elId, scale){
       .call(d3.axisBottom()
           .scale(scale)
           .tickFormat(timeFormatter)
-          .ticks(5)
+          .ticks(6)
       );
 }
 
