@@ -25,7 +25,7 @@ export default function(tz) {
     };
   }
 
-  var chrono_scale, domainextent, formats, ms, niceunitnumbers, powround, selectnice, selectunit, units;
+  var chrono_scale, domainextent, formats, ms, niceunitnumbers, powround, selectnice, selectunit, nextCoarsestUnit, units;
   ms = function(d) {
     if (moment.isMoment(d)) {
       return d.valueOf();
@@ -49,6 +49,17 @@ export default function(tz) {
       }
     }
     return 'ms';
+  };
+  nextCoarsestUnit = function(unit){
+    var curIndex = units.indexOf(unit);
+    if(curIndex){
+      if(curIndex === 0){
+        //return units[units.length - 1];
+        return unit;
+      }else{
+        return units[curIndex - 1];
+      }
+    }
   };
   powround = function(num) {
     if (num < 1) {
@@ -144,7 +155,23 @@ export default function(tz) {
       diff = domain[1].diff(domain[0], unit);
       diff /= count;
       diff = selectnice(diff, unit);
+      //every is the time span between ticks
       every = anchor.every(diff, unit);
+      //if the distance to the next round coarser unit is less than the distance between ticks, start the anchor at a round value of the coarser unit. (i.e. if the distance to the next whole day is less than the distance bewteen ticks for hourly ticks, round the anchor (starting) tick to the closest whole day.)
+
+      var parentUnit = nextCoarsestUnit(unit);
+      var prevRoundParent = moment(anchor).startOf(parentUnit);
+      var prevRoundParentAbsDiff = Math.abs(anchor.diff(prevRoundParent, unit));
+      var nextRoundParent = moment(anchor).startOf(parentUnit).add(1,parentUnit);
+      var nextRoundParentAbsDiff = Math.abs(anchor.diff(nextRoundParent, unit));
+      var closestRoundParent = prevRoundParentAbsDiff < nextRoundParentAbsDiff ? prevRoundParent : nextRoundParent;
+
+      if(prevRoundParentAbsDiff <= diff || nextRoundParentAbsDiff <= diff){
+        //use a new anchor
+        anchor = closestRoundParent;
+        every = anchor.every(diff, unit);
+      }
+
       startindex = Math.ceil(every.count(domain[0]));
       endindex = Math.floor(every.count(domain[1]));
       if (startindex > endindex) {
