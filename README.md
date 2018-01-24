@@ -5,7 +5,7 @@ d3-timezone-scale allows creating scales locked into a specified timezone name f
 
 ## Installing
 
-If you use NPM, `npm install d3-timezone-scale`. Otherwise, download the [latest release](https://github.com/d3/d3-foo/releases/latest).
+If you use NPM, `npm install d3-timezone-scale`. Otherwise, download the [latest release](https://github.com/jpuffer/d3-timezone-scale/releases/latest).
 
 ## API Reference
 
