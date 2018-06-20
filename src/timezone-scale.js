@@ -6,7 +6,7 @@ import {scaleLinear} from "d3-scale";
 
 export default function(tz) {
 
-  var moment = require('moment');
+  var moment = require('moment-timezone');
   var chrono = require('chronological');
   moment = chrono(moment);
 
